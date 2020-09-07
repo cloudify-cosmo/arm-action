@@ -1,0 +1,45 @@
+name: "Create Azure ARM environment"
+description: "Creates an Azure ARM environment"
+inputs:
+  environment-name:
+    description: "The ID of the environment"
+    required: true
+  resource-group:
+    description: "Name of resource group to create"
+    required: true
+  template-file:
+    description: "URL/path to template file"
+    required: true
+  parameters-file:
+    description: "YAML/JSON file containing template parameters"
+    required: false
+    default: "-"
+  location:
+    description: "Azure location to create resource group in"
+    required: false
+    default: "-"
+  outputs-file:
+    description: "Path to generated outputs file"
+    required: false
+    default: "-"
+outputs:
+  environment-data:
+    description: "The environment's outputs"
+runs:
+  using: "docker"
+  image: "docker://isaaccfy/cfy-ci:latest"
+  entrypoint: "cfyci"
+  args:
+    - 'arm'
+    - '--name'
+    - ${{ inputs.environment-name }}
+    - '--resource-group'
+    - ${{ inputs.resource-group }}
+    - '--template-file'
+    - ${{ inputs.template-file }}
+    - '--parameters-file'
+    - ${{ inputs.parameters-file }}
+    - '--location'
+    - ${{ inputs.location }}
+    - '--outputs-file'
+    - ${{ inputs.outputs-file }}
