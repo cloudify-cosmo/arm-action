@@ -1,36 +1,38 @@
-name: "Create Azure ARM environment"
-description: "Creates an Azure ARM environment"
+name: Create Azure ARM environment
+description: Creates an Azure ARM environment
 inputs:
   environment-name:
-    description: "The ID of the environment"
+    description: Name of Cloudify environment to create
     required: true
   resource-group:
-    description: "Name of resource group to create"
+    description: Name of resource group to create
     required: true
   template-file:
-    description: "URL/path to template file"
+    description: URL/path to template file
     required: true
   parameters-file:
-    description: "YAML/JSON file containing template parameters"
+    description: YAML/JSON file containing template parameters
     required: false
     default: "-"
   location:
-    description: "Azure location to create resource group in"
+    description: Azure location to create resource group in
     required: false
     default: "-"
   outputs-file:
-    description: "Path to generated outputs file"
+    description: |
+      Path to JSON file to receive the Cloudify environment's outputs
+      and capabilities
     required: false
     default: "-"
 outputs:
   environment-data:
-    description: "The environment's outputs"
+    description: The Cloudify environment's outputs and capabilties
 runs:
-  using: "docker"
-  image: "docker://isaaccfy/cfy-ci:latest"
-  entrypoint: "cfyci"
+  using: docker
+  image: docker://isaaccfy/cfy-ci:latest
+  entrypoint: cfyci
   args:
-    - 'arm'
+    - arm
     - '--name'
     - ${{ inputs.environment-name }}
     - '--resource-group'
