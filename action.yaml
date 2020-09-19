@@ -1,5 +1,9 @@
-name: Create Azure ARM environment
+name: Create Azure ARM Environment
+author: Isaac Shabtay
 description: Creates an Azure ARM environment
+branding:
+  icon: cloud
+  color: white
 inputs:
   environment-name:
     description: Name of Cloudify environment to create
