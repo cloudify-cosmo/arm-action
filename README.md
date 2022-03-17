@@ -44,9 +44,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create environment
-        uses: cloudify-cosmo/arm-action@v1.1
+        uses: cloudify-cosmo/arm-action@v1.2
         with:
           environment-name: "test-arm-$GITHUB_RUN_ID"
+          labels: some_label:label_value,yet_another_label:some_value
           resource-group: "githubarmrg$GITHUB_RUN_ID"
           location: centralus
           template-file: arm/environment.json
