@@ -44,7 +44,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create environment
-        uses: cloudify-cosmo/arm-action@v1.2
+        uses: cloudify-cosmo/arm-action@v1.3
         with:
           environment-name: "test-arm-$GITHUB_RUN_ID"
           labels: some_label:label_value,yet_another_label:some_value
